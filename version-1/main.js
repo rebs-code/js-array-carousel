@@ -48,6 +48,23 @@ for (let i = 0; i < images.length; i++) {
     items.appendChild(item);
 };
 
+for (let i = 0; i < images.length; i++) {
+    // creo un elemento img per ogni singolo thumbnail
+    const thumbnail = document.createElement('img');
+    thumbnail.src = `/img/0${i+1}.jpg`;
+    thumbnail.alt = `Thumbnail ${i+1}`;
+    // aggiungo un event listener per ogni thumbnail
+    thumbnail.addEventListener('click', function() {
+        // rimuovo la classe active dall'immagine corrente
+        allItems[currentSlide].classList.remove('active');
+        // cambio currentSlide con l'indice dell'immagine cliccata
+        currentSlide = i;
+        // aggiungo la classe active all'immagine corrente
+        allItems[currentSlide].classList.add('active');
+    });
+    thumbnails.appendChild(thumbnail);
+};
+
 // This LOC selects all the elements in the hmtl with class "item" and stores them in a variable.
 const allItems = document.querySelectorAll(".item");
 // add event listeners to buttons
