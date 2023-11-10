@@ -23,15 +23,15 @@ prev.classList.add('prev');
 // create next button
 const next = document.createElement('div');
 next.classList.add('next');
-// append buttons to itemsa div
-thumbnails.appendChild(prev);
-thumbnails.appendChild(next);
 //append items to container
 container.appendChild(items);
-//appenmd thumbnails to container
+//append thumbnails to container
 container.appendChild(thumbnails);
 // append container to body
 document.body.appendChild(container);
+// append buttons to thumbnails div
+thumbnails.appendChild(prev);
+thumbnails.appendChild(next);
 
 let currentSlide = 0; //questa è la prima immagine con indice 0 nell'array
 
@@ -46,30 +46,33 @@ for (let i = 0; i < images.length; i++) {
     img.alt = 'image 0${i}';
     item.appendChild(img);
     items.appendChild(item);
-};
-
-for (let i = 0; i < images.length; i++) {
     // creo un elemento img per ogni singolo thumbnail
     const thumbnail = document.createElement('img');
+    //give class opacity to all thumbnails
+    thumbnail.classList.add('opacity');
     thumbnail.src = `/img/0${i+1}.jpg`;
     thumbnail.alt = `Thumbnail ${i+1}`;
-    //aggiungo classe opacity a tutti i thumbnail tranne il primo
-    if (i !== currentSlide) {
-        thumbnail.classList.add('opacity');
-    };
     // aggiungo un event listener per ogni thumbnail
     thumbnail.addEventListener('click', function() {
-        // rimuovo la classe active dall'immagine corrente
-        allItems[currentSlide].classList.remove('active');
-        // cambio currentSlide con l'indice dell'immagine cliccata
-        currentSlide = i;
-        // aggiungo la classe active all'immagine corrente
-        allItems[currentSlide].classList.add('active');
-        //aggiungo la classe focus all'immagine corrente
-        thumbnail.classList.remove('opacity'); 
-    });
+            // rimuovo la classe active dall'immagine corrente
+            allItems[currentSlide].classList.remove('active');
+            // cambio currentSlide con l'indice dell'immagine cliccata
+            currentSlide = i;
+            // aggiungo la classe active all'immagine corrente
+            allItems[currentSlide].classList.add('active'); 
+            //give class opacity to all thumbnails
+            const allThumbnails = document.querySelectorAll('.thumbnails img');
+            for (let i = 0; i < allThumbnails.length; i++) {
+                allThumbnails[i].classList.add('opacity');
+            };
+            // the thumbnail with the same source image as the current slide has class opacity removed
+            thumbnail.classList.remove('opacity');           
+});
     thumbnails.appendChild(thumbnail);
 };
+
+
+
 
 // This LOC selects all the elements in the hmtl with class "item" and stores them in a variable.
 const allItems = document.querySelectorAll(".item");
