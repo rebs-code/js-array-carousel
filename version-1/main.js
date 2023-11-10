@@ -24,8 +24,8 @@ prev.classList.add('prev');
 const next = document.createElement('div');
 next.classList.add('next');
 // append buttons to itemsa div
-items.appendChild(prev);
-items.appendChild(next);
+thumbnails.appendChild(prev);
+thumbnails.appendChild(next);
 //append items to container
 container.appendChild(items);
 //appenmd thumbnails to container
@@ -53,6 +53,10 @@ for (let i = 0; i < images.length; i++) {
     const thumbnail = document.createElement('img');
     thumbnail.src = `/img/0${i+1}.jpg`;
     thumbnail.alt = `Thumbnail ${i+1}`;
+    //aggiungo classe opacity a tutti i thumbnail tranne il primo
+    if (i !== currentSlide) {
+        thumbnail.classList.add('opacity');
+    };
     // aggiungo un event listener per ogni thumbnail
     thumbnail.addEventListener('click', function() {
         // rimuovo la classe active dall'immagine corrente
@@ -61,6 +65,8 @@ for (let i = 0; i < images.length; i++) {
         currentSlide = i;
         // aggiungo la classe active all'immagine corrente
         allItems[currentSlide].classList.add('active');
+        //aggiungo la classe focus all'immagine corrente
+        thumbnail.classList.remove('opacity'); 
     });
     thumbnails.appendChild(thumbnail);
 };
