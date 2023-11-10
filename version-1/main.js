@@ -32,6 +32,7 @@ document.body.appendChild(container);
 // append buttons to thumbnails div
 thumbnails.appendChild(prev);
 thumbnails.appendChild(next);
+const thumbnail = document.createElement('img');
 
 
 let currentSlide = 0; //questa è la prima immagine con indice 0 nell'array
@@ -76,13 +77,11 @@ for (let i = 0; i < images.length; i++) {
     thumbnails.appendChild(thumbnail);
 };
 
-
-
-
 // This LOC selects all the elements in the hmtl with class "item" and stores them in a variable.
 const allItems = document.querySelectorAll(".item");
 // add event listeners to buttons
 next.addEventListener('click', function() {
+    
     // if the current slide is not the last one, remove the class "active" from the current slide and add it to the next one.
     if(currentSlide < allItems.length - 1) {
         allItems[currentSlide].classList.remove("active");
@@ -93,6 +92,13 @@ next.addEventListener('click', function() {
             allItems[currentSlide].classList.remove("active");
             currentSlide = 0;
             allItems[currentSlide].classList.add("active");}
+        //the thumbnail with the same source image as the current slide has class opacity removed
+        const allThumbnails = document.querySelectorAll('.thumbnails img');
+        for (let i = 0; i < allThumbnails.length; i++) {
+        allThumbnails[i].classList.add('opacity');
+        };
+        allThumbnails[currentSlide].classList.remove('opacity');
+
 });
 
 prev.addEventListener('click', function() {
@@ -107,6 +113,14 @@ prev.addEventListener('click', function() {
         currentSlide = allItems.length - 1;
         allItems[currentSlide].classList.add("active");
     }
+    //the thumbnail with the same source image as the current slide has class opacity removed
+    const allThumbnails = document.querySelectorAll('.thumbnails img');
+    for (let i = 0; i < allThumbnails.length; i++) {
+    allThumbnails[i].classList.add('opacity');
+    };
+    allThumbnails[currentSlide].classList.remove('opacity');
 });
+
+
 
 

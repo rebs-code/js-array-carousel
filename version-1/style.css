@@ -58,7 +58,9 @@
 .opacity {
     opacity: 0.7;
     filter: brightness(70%) grayscale(30%);
+    border: none;
 }
+
 
 
 /* buttons */
