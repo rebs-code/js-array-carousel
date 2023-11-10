@@ -32,7 +32,7 @@ document.body.appendChild(container);
 // append buttons to thumbnails div
 thumbnails.appendChild(prev);
 thumbnails.appendChild(next);
-const thumbnail = document.createElement('img');
+
 
 
 let currentSlide = 0; //questa è la prima immagine con indice 0 nell'array
