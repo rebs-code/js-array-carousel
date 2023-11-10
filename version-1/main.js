@@ -43,9 +43,11 @@ for (let i = 0; i < images.length; i++) {
     items.appendChild(item);
 };
 
+// This LOC selects all the elements in the hmtl with class "item" and stores them in a variable.
 const allItems = document.querySelectorAll(".item");
-
+// add event listeners to buttons
 next.addEventListener('click', function() {
+    // if the current slide is not the last one, remove the class "active" from the current slide and add it to the next one.
     if(currentSlide < allItems.length - 1) {
         allItems[currentSlide].classList.remove("active");
         currentSlide++;
@@ -54,6 +56,7 @@ next.addEventListener('click', function() {
 });
 
 prev.addEventListener('click', function() {
+    // if the current slide is not the first one, remove the class "active" from the current slide and add it to the previous one.
     if(currentSlide > 0) {
         allItems[currentSlide].classList.remove("active");
         currentSlide--;
