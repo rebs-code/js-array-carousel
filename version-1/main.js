@@ -33,6 +33,7 @@ document.body.appendChild(container);
 thumbnails.appendChild(prev);
 thumbnails.appendChild(next);
 
+
 let currentSlide = 0; //questa è la prima immagine con indice 0 nell'array
 
 for (let i = 0; i < images.length; i++) {
@@ -52,6 +53,10 @@ for (let i = 0; i < images.length; i++) {
     thumbnail.classList.add('opacity');
     thumbnail.src = `/img/0${i+1}.jpg`;
     thumbnail.alt = `Thumbnail ${i+1}`;
+    //remove opacity class from first thumbnail
+    if (i === 0) {
+        thumbnail.classList.remove('opacity');
+    };
     // aggiungo un event listener per ogni thumbnail
     thumbnail.addEventListener('click', function() {
             // rimuovo la classe active dall'immagine corrente
@@ -63,10 +68,10 @@ for (let i = 0; i < images.length; i++) {
             //give class opacity to all thumbnails
             const allThumbnails = document.querySelectorAll('.thumbnails img');
             for (let i = 0; i < allThumbnails.length; i++) {
-                allThumbnails[i].classList.add('opacity');
-            };
-            // the thumbnail with the same source image as the current slide has class opacity removed
-            thumbnail.classList.remove('opacity');           
+            allThumbnails[i].classList.add('opacity');
+    };
+    // the thumbnail with the same source image as the current slide has class opacity removed
+    thumbnail.classList.remove('opacity');           
 });
     thumbnails.appendChild(thumbnail);
 };
@@ -83,7 +88,11 @@ next.addEventListener('click', function() {
         allItems[currentSlide].classList.remove("active");
         currentSlide++;
         allItems[currentSlide].classList.add("active");
-    }
+        } // if the current slide is the last one, remove the class "active" from the current slide and add it to the first one.
+        else {
+            allItems[currentSlide].classList.remove("active");
+            currentSlide = 0;
+            allItems[currentSlide].classList.add("active");}
 });
 
 prev.addEventListener('click', function() {
@@ -92,5 +101,12 @@ prev.addEventListener('click', function() {
         allItems[currentSlide].classList.remove("active");
         currentSlide--;
         allItems[currentSlide].classList.add("active");
+    } else {
+        // if the current slide is the first one, remove the class "active" from the current slide and add it to the last one.
+        allItems[currentSlide].classList.remove("active");
+        currentSlide = allItems.length - 1;
+        allItems[currentSlide].classList.add("active");
     }
 });
+
+
