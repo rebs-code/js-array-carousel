@@ -14,6 +14,9 @@ container.classList.add('container');
 // create items
 const items = document.createElement('div');
 items.classList.add('items');
+// create thumbnail container
+const thumbnails = document.createElement('div');
+thumbnails.classList.add('thumbnails');
 // create prev button
 const prev = document.createElement('div');
 prev.classList.add('prev');
@@ -25,6 +28,8 @@ items.appendChild(prev);
 items.appendChild(next);
 //append items to container
 container.appendChild(items);
+//appenmd thumbnails to container
+container.appendChild(thumbnails);
 // append container to body
 document.body.appendChild(container);
 
